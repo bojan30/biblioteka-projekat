@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Library</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+</head>
+<body>
+  <div class="container">
+    <!--title-->
+    <div class="title-wrapper">
+      <i class="fas fa-book"></i>
+      <h3>My Library</h3>
+    </div>
+    <div class = "add-new-book">
+      <button id = "add-books" class = "btn">Add new book <span><i class="fas fa-caret-down"></i></span></button>
+    </div>
+    <div id = "enter-books-wrapper" class="enter-books">
+      <form autocomplete="off" spellcheck="false" id = "enter-book-form">
+        <div class="form-group">
+          <label for="author">Author</label>
+          <div class="input-wrapper">
+            <input id="author" type="text" placeholder="Enter author" data-id = 0>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <div class="input-wrapper">
+          <input id="title" type="text" placeholder="Enter title" data-id = 1>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="publisher">Publisher</label>
+          <div class="input-wrapper">
+            <input id="publisher" type="text" placeholder="Enter publisher" data-id = 2>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="year">Year</label>
+          <div class="input-wrapper">
+            <input id="year" type="text" placeholder="Enter year" data-id = 3>
+          </div>
+        </div>
+        <button id  = "enter" class = "btn enter">Enter book</button>
+      </form>
+    </div>
+    <div class="book-table-wrapper">
+      <h3>List of books</h3>
+      <table id = "table">
+        <thead>
+          <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Publisher</th>
+            <th>Year</th>
+            <th>Modify</th>
+          </tr>
+        </thead>
+        <tbody id = "books-holder">
+          <!--dinamicko renderovanje knjiga-->
+        </tbody>
+      </table>
+    </div>
+    <!--edit books form-->
+    <div id = "edit-books" class="edit-books">
+      <button id = "close-btn" class = "close-btn"><i class = 'fas fa-times'></i></button>
+      <form id="edit-book-form">
+        <div class="form-group">
+          <label for="author">Author</label>
+          <div class="input-wrapper">
+            <input id="author-edit" type="text" placeholder="Enter author">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <div class="input-wrapper">
+            <input id="title-edit" type="text" placeholder="Enter title">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="publisher">Publisher</label>
+          <div class="input-wrapper">
+            <input id="publisher-edit" type="text" placeholder="Enter publisher">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="year">Year</label>
+          <div class="input-wrapper">
+            <input id="year-edit" type="text" placeholder="Enter year">
+          </div>
+        </div>
+        <button id="enter" class="btn enter">Enter book</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
