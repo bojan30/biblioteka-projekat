@@ -1,4 +1,4 @@
-//html elementi
+//elementi
 const formInputs = document.querySelectorAll('#enter-book-form input');
 const booksHolder = document.getElementById('books-holder');
 const editFormWrapper = document.getElementById('edit-books');
@@ -63,6 +63,44 @@ editForm.addEventListener('submit', function (e) {
 
 closeBtn.addEventListener('click', function () {
   editFormWrapper.classList.remove('active');
+})
+
+//kontrolise vidljivost ikonice unutar input polja
+
+formInputs.forEach(input => {
+  input.addEventListener('focus', function () {
+    this.style.paddingLeft = '10px';
+    this.parentNode.classList.add('hide');
+  })
+});
+
+formInputs.forEach(input => {
+  input.addEventListener('blur', function () {
+    this.style.paddingLeft = '30px';
+    this.parentNode.classList.remove('hide');
+  })
+});
+
+//dodaje informaciju o tome da li je input validan, menja boju bordera u zelenu ili crvenu
+
+const inputs = document.querySelectorAll('#enter-book-form input');
+inputs.forEach(input => {
+  input.addEventListener('input', function (e) {
+    if (e.target.value !== '') {
+      if (isValidInput(e.target.value, patterns[e.target.dataset.id])) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+      }
+      else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+      }
+    }
+    else {
+      this.classList.remove('valid');
+      this.classList.remove('invalid');
+    }
+  });
 })
 
 //KLASA KNJIGA
