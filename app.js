@@ -40,9 +40,11 @@ enterBookForm.addEventListener('submit', function (e) {
     books.push(book);
     addBook(book);
     //ovde treba dodati poruku
+    displayMessage('Book is added successfuly!','success');
   }
   else {
     //ovde treba dodati poruku
+    displayMessage('You have to enter all fields correctly!','danger');
   }
 });
 
@@ -194,6 +196,7 @@ function editBook(target) {
     return book;
   })
   render(books);
+  displayMessage('Book is edited successfuly!', 'success');
 }
 
 //brisanje knjige, zasnovano na jedinstvenom id-ju
@@ -206,6 +209,7 @@ function deleteBook(target) {
     }
   })
   trToRemove.remove();
+  displayMessage('Book is deleted successfuly!', 'success');
 }
 
 //resetuje inpute
@@ -222,4 +226,17 @@ function resetInputs() {
 
 function isValidInput(input, pattern) {
   return pattern.test(input);
+}
+
+//prikazuje poruku (feedback) korisniku
+
+function displayMessage(message, className) {
+  //prvo treba napraviti div koji prikazuje poruke
+  const messageDiv = document.createElement('div');
+  messageDiv.innerText = message;
+  messageDiv.setAttribute('class', `message ${className}`);
+  document.body.appendChild(messageDiv);
+
+  //ukloni poruku nakon dve sekunde
+  setTimeout(() => { messageDiv.remove() }, 2000);
 }
