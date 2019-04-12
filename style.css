@@ -10,8 +10,8 @@
   --danger: #f04125;
   --main-text-color: #666;
   --border-radius: 4px;
-  --shadow: 0px 0px 2px 0px rgba(0,0,0,0.7);
-  --shadow-active: 0px 0px 3px 0px rgba(0,0,0,0.7);
+  --shadow: 0px 0px 3px 0px rgba(0,0,0,0.7);
+  --shadow-active: 0px 0px 3px 1px rgba(0,0,0,0.7);
   --shadow-hover: 0px 15px 10px -12px rgba(0,0,0,0.7);
 }
 /*reset styles*/
@@ -100,34 +100,45 @@ body{
   background-color: #fff;
 }
 
+#enter-book-form{
+  margin-bottom: 20px;
+  display: none;
+}
+#enter-book-form.active{
+  display: block;
+}
+
 #enter-book-form .form-group,#edit-book-form .form-group{
   margin-bottom: 20px;
 }
 
-#enter-book-form input, #edit-book-form input{
+input{
   /* border-bottom: 1px solid var(--primary); */
   width: 100%;
   margin-top: 5px;
   /* box-shadow: var(--shadow); */
-  border: 1px solid #444;
+  /* border: 1px solid #444; */
   border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
   height: 30px;
   padding-left: 30px;
   font-size: 16px;
   color: var(--main-text-color);
-  transition: padding 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+input:focus{
+  box-shadow: var(--shadow-active);
 }
 
 #enter-book-form input.valid{
-  border: 2px solid var(--success);
+  /* border: 2px solid var(--success); */
+  box-shadow: 0px 0px 3px 1px #0dd657;
 }
 #enter-book-form input.invalid{
-  border: 2px solid var(--danger);
+  /* border: 2px solid var(--danger); */
+  box-shadow: 0px 0px 3px 1px var(--danger);
 }
-
-/* #enter-book-form input:focus, #edit-book-form input:focus{
-  box-shadow: var(--shadow-active);
-} */
 
 #enter-book-form input::placeholder{
   color: var(--main-text-color);
@@ -141,7 +152,6 @@ body{
 }
 
 .input-wrapper::before{
-  content: "\f303";
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   position: absolute;
@@ -149,6 +159,12 @@ body{
   left: 6px;
   transform: translateY(-50%);
   transition: transform 0.1s linear;
+}
+.input-wrapper.pencil-icon::before{
+  content: "\f303";
+}
+.input-wrapper.search-icon::before{
+  content: "\f002";
 }
 
 #enter-book-form .enter{
@@ -255,7 +271,7 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 140, 186,0.4);
+  background-color: rgba(0, 140, 186,0.8);
   display: flex;
   justify-content: center;
   align-items: center;

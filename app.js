@@ -6,6 +6,7 @@ const editForm = document.getElementById('edit-book-form');
 const closeBtn = document.getElementById('close-btn');
 const enterBooksWrapper = document.getElementById('enter-books-wrapper');
 const enterBookForm = document.getElementById('enter-book-form');
+const addBooksBtn = document.getElementById('add-books');
 
 //prvo treba proveriti da li ima nesto u localStorage-u
 let books = (!localStorage.length) ? [] : JSON.parse(localStorage.getItem('books'));
@@ -240,4 +241,25 @@ function displayMessage(message, className) {
 
   //ukloni poruku nakon dve sekunde
   setTimeout(() => { messageDiv.remove() }, 2000);
+}
+
+//filter funkcija
+const search = document.getElementById('search');
+search.addEventListener('input',function(e){
+  render(filteredBooks(e,books));
+})
+function filteredBooks(e,books){
+  const term = e.target.value;
+  return books.filter(book=>{
+    return book.author.toLowerCase().match(term)
+          || book.title.toLowerCase().match(term)
+          || book.publisher.toLowerCase().match(term)
+          || book.year.toLowerCase().match(term);
+  });
+};
+
+addBooksBtn.addEventListener('click',toggleEnterBookForm);
+
+function toggleEnterBookForm(){
+  enterBookForm.classList.toggle('active');
 }
