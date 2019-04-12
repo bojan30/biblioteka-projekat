@@ -7,10 +7,8 @@ const closeBtn = document.getElementById('close-btn');
 const enterBooksWrapper = document.getElementById('enter-books-wrapper');
 const enterBookForm = document.getElementById('enter-book-form');
 
-//inicijalni niz knjiga
-let books = [
-  { id: 123123123, author: 'Ivo Andric', title: 'Prokleta Avlija', publisher: 'Laguna', year: 2000 }
-];
+//prvo treba proveriti da li ima nesto u localStorage-u
+let books = (!localStorage.length) ? [] : JSON.parse(localStorage.getItem('books'));
 
 //regularni izrazi
 let patterns = [
@@ -154,6 +152,7 @@ function addBook(book) {
   //to ce biti korisno prilikom brisanja i editovanja
   newBookTr.setAttribute(`data-id`, `${book.id}`);
   booksHolder.appendChild(newBookTr);
+  localStorage.setItem('books', JSON.stringify(books));
   //resetujemo inpute u formi posle unosa knjige
   resetInputs();
 }
@@ -196,6 +195,7 @@ function editBook(target) {
     return book;
   })
   render(books);
+  localStorage.setItem('books', JSON.stringify(books));
   displayMessage('Book is edited successfuly!', 'success');
 }
 
@@ -209,6 +209,7 @@ function deleteBook(target) {
     }
   })
   trToRemove.remove();
+  localStorage.setItem('books', JSON.stringify(books));
   displayMessage('Book is deleted successfuly!', 'success');
 }
 
@@ -233,7 +234,7 @@ function isValidInput(input, pattern) {
 function displayMessage(message, className) {
   //prvo treba napraviti div koji prikazuje poruke
   const messageDiv = document.createElement('div');
-  messageDiv.innerText = message;
+  messageDiv.innerHTML = `<p>${message}</p>`;
   messageDiv.setAttribute('class', `message ${className}`);
   document.body.appendChild(messageDiv);
 
